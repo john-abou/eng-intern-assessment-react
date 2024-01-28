@@ -3,8 +3,8 @@ import StopWatch from '../components/StopWatch';
 import StopWatchButton from '../components/StopWatchButton';
 
 const Stopwatch: React.FC = () => {
-  const [timerOn, setTimerOn] = useState(false);
-  const [time, setTime] = useState(0);
+  const [timerOn, setTimerOn] = useState<boolean>(false);
+  const [time, setTime] = useState<number>(0);
   const [laps, setLaps] = useState<number[]>([]);
 
   // Function to handle the start/stop of the stopwatch 
@@ -21,7 +21,7 @@ const Stopwatch: React.FC = () => {
     ]);
   }
 
-  // Reset function should empty the laps array, set time to 0 and stop the watch
+  // Reset function to empty the laps array, set time to 0 and stop the watch
   const handleReset = () => {
     setTimerOn(false);
     setTime(0);
@@ -45,7 +45,13 @@ const Stopwatch: React.FC = () => {
 
   return (
     <div>
-      {/* The display and buttons should be put here, pass functions and state vars as props. */}
+      <StopWatch time={time} laps={laps}/>
+      <StopWatchButton
+        timerOn={timerOn}
+        onStartStop={handleStartStop}
+        onLap={updateLaps}
+        onReset={handleReset}
+      />
     </div>
   )
 }

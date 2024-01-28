@@ -1,11 +1,19 @@
 import React from 'react'
 
-// Define the interface for the stopwatch button props
+// Define the types for the stopwatch button props
+type StopWatchButtonProps = {
+    timerOn: boolean;
+    onStartStop: () => void;
+    onLap: () => void;
+    onReset: () => void;
+}
 
-export default function StopWatchButton() {
+const StopWatchButton = ({timerOn, onStartStop, onLap, onReset}: StopWatchButtonProps) => {
     return(
         <div>
             {/* Display the buttons and use the props from the parent component for handling the onClick functions */}
         </div>
     )
 }
+
+export default StopWatchButton;
