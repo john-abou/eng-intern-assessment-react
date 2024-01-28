@@ -10,15 +10,18 @@ const Stopwatch: React.FC = () => {
   // Function to handle the start/stop of the stopwatch 
   const handleStartStop = () => {
     setTimerOn(!timerOn);
+    console.log(timerOn)
   }
 
   // Function to save lap time
   const updateLaps = () => {
     // Update the laps state
+    console.log('before click', laps)
     setLaps([
       ...laps,
       time
     ]);
+    console.log('after', laps)
   }
 
   // Reset function to empty the laps array, set time to 0 and stop the watch
@@ -28,20 +31,20 @@ const Stopwatch: React.FC = () => {
     setLaps([]);
   }
 
-  // UseEffect that updates time if the timer is on. Every 100 ms the time will increase by 100 ms. 
+  // UseEffect that updates time if the timer is on. Every 10 ms the time will increase by 100 ms. 
   useEffect(() => {
     let timerInterval: NodeJS.Timeout; // Special type -- used to prevent TS error with 'number'
 
-    // If the timer is on, every 100 ms the time will increase by 100 ms.
+    // If the timer is on, every 10 ms the time will increase by 10 ms.
     if (timerOn) {
       timerInterval = setInterval(() => {
-        setTime(time + .100);
-      }, 100);
+        setTime(prevTime => prevTime + 0.01);
+      }, 10);
     }
 
     // If the timer is off, the timer interval stops.
     return () => clearInterval(timerInterval);
-  }, [timerOn]);
+  }, [timerOn, laps]);
 
   return (
     <div>
