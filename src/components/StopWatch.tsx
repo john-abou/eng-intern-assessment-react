@@ -10,10 +10,10 @@ const StopWatch = ({time, laps}: StopWatchDisplayProps) => {
    return (
     <div>
       {/* Use props to display the time elapsed during the current lap and if laps exist, display lap times. */}
-      <div>{time} ms</div>
-      <ul>
+      <div id='displayed-time'>{time.toFixed(2)} seconds</div>
+      <ul id='recorded-laps'>
         {(laps.map((lap, index) => (
-          <li key={index}>Lap {index +1}: {lap} ms</li>
+          <li key={index}>Lap {index +1}: {lap.toFixed(2)} s</li>
         )))}
       </ul>
     </div>
