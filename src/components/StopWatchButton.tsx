@@ -11,7 +11,18 @@ type StopWatchButtonProps = {
 const StopWatchButton = ({timerOn, onStartStop, onLap, onReset}: StopWatchButtonProps) => {
     return(
         <div>
-            {/* Display the buttons and use the props from the parent component for handling the onClick functions */}
+            {timerOn ? (
+                <div>
+                    <button onClick={onReset}> Reset </button>
+                    <button onClick={onLap}> Lap </button>
+                    <button onClick={onStartStop}> Stop </button>
+                </div>
+            ) : (
+                <div>
+                    <button onClick={onReset}> Reset </button>
+                    <button onClick={onStartStop}> Start </button>
+                </div>
+            )}
         </div>
     )
 }
