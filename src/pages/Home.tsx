@@ -35,7 +35,7 @@ const Stopwatch: React.FC = () => {
     // If the timer is on, every 100 ms the time will increase by 100 ms.
     if (timerOn) {
       timerInterval = setInterval(() => {
-        setTime(time + 100);
+        setTime(time + .100);
       }, 100);
     }
 
