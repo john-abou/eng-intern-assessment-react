@@ -4,18 +4,32 @@ import StopWatchButton from '../components/StopWatchButton';
 
 
 const Stopwatch: React.FC = () => {
-  // Define state variables for if the clock is running, the current time and the laps
   const [timerOn, setTimerOn] = useState(false);
-  const [time, setTime] = useState(0)
-  const [laps, setLaps] = useState<number[]>([])
+  const [time, setTime] = useState(0);
+  const [laps, setLaps] = useState<number[]>([]);
 
-  // Create functions to handle start/stop of the watch, laps, reset timer
-  // Start/stop function should reverse the boolean value of the state var
+  // Function to handle the start/stop of the stopwatch 
   const handleStartStop = () => {
-    setTimerOn(!timerOn)
+    setTimerOn(!timerOn);
   }
-  // Lap function should update state var by creating a new array with the previous lap time and restart the timer so the current lap starts from 0
+  // Function to save lap time and restart timer for the new lap
+  const updateLaps = () => {
+    // Update the laps state
+    setLaps([
+      ... laps, 
+      time
+    ]);
+
+    // Reset the timer to 0
+    setTime(0);
+  }
+
   // Reset function should empty the laps array, set time to 0 and stop the watch
+  const handleReset = () => {
+    setTimerOn(false);
+    setTime(0);
+    setLaps([]);
+  }
 
   // Create useEffect to handle the updating timer, should activate if the timer is on.
 
