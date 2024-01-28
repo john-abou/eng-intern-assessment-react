@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import StopWatch from '../components/StopWatch';
 import StopWatchButton from '../components/StopWatchButton';
-
 
 const Stopwatch: React.FC = () => {
   const [timerOn, setTimerOn] = useState(false);
@@ -12,16 +11,14 @@ const Stopwatch: React.FC = () => {
   const handleStartStop = () => {
     setTimerOn(!timerOn);
   }
-  // Function to save lap time and restart timer for the new lap
+
+  // Function to save lap time
   const updateLaps = () => {
     // Update the laps state
     setLaps([
-      ... laps, 
+      ...laps,
       time
     ]);
-
-    // Reset the timer to 0
-    setTime(0);
   }
 
   // Reset function should empty the laps array, set time to 0 and stop the watch
@@ -31,7 +28,20 @@ const Stopwatch: React.FC = () => {
     setLaps([]);
   }
 
-  // Create useEffect to handle the updating timer, should activate if the timer is on.
+  // UseEffect that updates time if the timer is on. Every 100 ms the time will increase by 100 ms. 
+  useEffect(() => {
+    let timerInterval: NodeJS.Timeout; // Special type -- used to prevent TS error with 'number'
+
+    // If the timer is on, every 100 ms the time will increase by 100 ms.
+    if (timerOn) {
+      timerInterval = setInterval(() => {
+        setTime(time + 100);
+      }, 100);
+    }
+
+    // If the timer is off, the timer interval stops.
+    return () => clearInterval(timerInterval);
+  }, [timerOn]);
 
   return (
     <div>
@@ -40,4 +50,4 @@ const Stopwatch: React.FC = () => {
   )
 }
 
-export default StopWatch;
+export default Stopwatch;
