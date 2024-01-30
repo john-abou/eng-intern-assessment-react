@@ -21,6 +21,8 @@ const StopWatchButton = ({timerOn, onStartStop, onLap, onReset}: StopWatchButton
                 <div>
                     <button onClick={onReset}> Reset </button>
                     <button onClick={onStartStop}> Start </button>
+                    <button onClick={onStartStop}> Stop </button>
+                    <button onClick={onLap}> Lap </button>
                 </div>
             )}
         </div>
